@@ -17,7 +17,8 @@ export class AppComponent {
   constructor(private firebaseStorage: AngularFireStorage) { }
 
   upload(event) {
-    const id = Math.random().toString(36).substring(2);
+
+    const id = event.target.files[0].name;
     this.ref = this.firebaseStorage.ref(id);
     this.task = this.ref.put(event.target.files[0]);
     this.uploadProgress = this.task.percentageChanges();
