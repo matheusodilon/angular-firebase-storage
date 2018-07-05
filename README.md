@@ -14,6 +14,17 @@ Baixe o projeto, execute `npm install` para instalar todas as dependências nece
 
 Altere os arquivo do diretório `environments/` (`environments.ts`, `environments.prod.ts`) e insira as configurações de sua aplicação Firebase.
 
+```
+  firebase: {
+    apiKey: '',
+    authDomain: '',
+    databaseURL: '',
+    projectId: '',
+    storageBucket: '',
+    messagingSenderId: ''
+  }
+```
+
 Execute `ng serve` para um servidor dev. Navegue até `http: // localhost: 4200 /`.
 
 
