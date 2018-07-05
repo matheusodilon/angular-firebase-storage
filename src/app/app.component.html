@@ -10,7 +10,7 @@
           [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
       <div class="text-center" *ngIf="uploadProgress">
-        {{ uploadProgress | async }}%
+        {{ uploadProgress | async | number : '1.2-2'}}%
       </div>
       <br/>
 
