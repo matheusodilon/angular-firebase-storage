@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+
+  uploadProgress: Observable<number>;
+  ref: AngularFireStorageReference;
+  downloadURL: Observable<string>;
+  task: AngularFireUploadTask;
+
+  constructor(private firebaseStorage: AngularFireStorage) { }
+
+  upload(event) {
+    const id = Math.random().toString(36).substring(2);
+    this.ref = this.firebaseStorage.ref(id);
+    this.task = this.ref.put(event.target.files[0]);
+    this.uploadProgress = this.task.percentageChanges();
+
+    this.task.then((task) => {
+      this.downloadURL = this.ref.getDownloadURL();
+    });
+  }
+
 }
